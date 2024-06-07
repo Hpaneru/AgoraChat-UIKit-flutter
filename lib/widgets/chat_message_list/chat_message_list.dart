@@ -102,6 +102,7 @@ class ChatMessageListController extends ChatBaseController {
     _loading = true;
     if (!_hasMore) {
       _loading = false;
+      _fetchHistoryMessage();
       return;
     }
 
@@ -109,6 +110,7 @@ class ChatMessageListController extends ChatBaseController {
       startMsgId: msgList.isEmpty ? "" : msgList.last.msgId,
       loadCount: count,
     );
+
     if (list.length < count) {
       _hasMore = false;
     }
@@ -117,6 +119,28 @@ class ChatMessageListController extends ChatBaseController {
 
     msgList.addAll(models);
     _loading = false;
+    refreshUI();
+
+    if (msgList.length < 15) {
+      _fetchHistoryMessage();
+    }
+  }
+
+  Future<void> _fetchHistoryMessage() async {
+    ChatCursorResult<ChatMessage> chatCursorResult =
+        await ChatClient.getInstance.chatManager.fetchHistoryMessages(
+      pageSize: 10,
+      conversationId: conversation.id,
+      startMsgId: msgList.last.msgId,
+    );
+
+    final chatMessageList = chatCursorResult.data;
+
+    List<ChatMessageListItemModel> models =
+        _modelsCreator(chatMessageList, _hasMore);
+
+    msgList.addAll(models);
+
     refreshUI();
   }
 
