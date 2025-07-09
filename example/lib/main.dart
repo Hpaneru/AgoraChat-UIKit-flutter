@@ -224,7 +224,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _addLogToConsole('begin sign in...');
     if (ChatConfig.agoraToken.isNotEmpty) {
       try {
-        await ChatClient.getInstance.loginWithAgoraToken(
+        await ChatClient.getInstance.loginWithToken(
           ChatConfig.userId,
           ChatConfig.agoraToken,
         );
@@ -234,7 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     } else {
       _addLogToConsole(
-          'sign in fail: The password and agoraToken cannot both be null.');
+          'sign in fail: The agoraToken cannot be null.');
     }
   }
 
