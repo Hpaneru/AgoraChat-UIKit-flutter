@@ -1,5 +1,6 @@
 {
-    "cSpell.words": [
-        "gapless"
-    ]
+  "cSpell.words": [
+    "gapless"
+  ],
+  "dart.flutterSdkPath": ".fvm/versions/3.29.3"
 }

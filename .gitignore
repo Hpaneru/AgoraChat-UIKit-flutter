@@ -15,7 +15,7 @@ migrate_working_dir/
 *.ipr
 *.iws
 .idea/
-
+.fvmrc
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -33,7 +33,6 @@ migrate_working_dir/
 .pub/
 /build/
 
-
 # Symbolication related
 app.*.symbols
 
@@ -46,3 +45,6 @@ app.*.map.json
 /android/app/release
 /example/iOS/Podfile.lock
 /example/pubspec.lock
+
+# FVM Version Cache
+.fvm/
